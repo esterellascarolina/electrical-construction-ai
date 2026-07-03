@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI and Digital Technologies in Electrical Construction: A Research Agenda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.25.6/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    html  { font-family: 'Inter', system-ui, sans-serif; }
+    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+    html  { scroll-behavior: smooth; }
+
+    /* Thin scrollbars inside overflow panels */
+    .scrollbar-thin::-webkit-scrollbar       { width: 6px; height: 6px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    /* Modal backdrop blur */
+    .backdrop-blur-modal {
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* Shared entrance animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade { animation: fadeIn 200ms ease-out; }
+  </style>
+</head>
+<body class="bg-stone-50 text-slate-900 antialiased">
+  <div id="root"></div>
+
+  <!--
+    Modular architecture: each file registers onto a shared
+    window namespace so nothing needs a bundler.
+
+      window.AppUtils       — normalisation, counting, year helpers
+      window.AppDescriptions — hover-tooltip copy for coded fields
+      window.AppCharts      — every chart component + AIChat
+      window.AppComponents  — PaperCard, PaperDetail, ChartPanel, etc.
+      window.AppViews       — full-page views (Dashboard, Papers, …)
+
+    Load order matters: later files may read from earlier ones.
+    Add a new chart by creating js/chart-*.js and registering
+    onto window.AppCharts the same way.
+  -->
+
+  <!-- ① Shared utilities (no deps) -->
+  <script src="./js/utils.js"               type="text/babel" data-presets="react"></script>
+  <script src="./js/descriptions.js"        type="text/babel" data-presets="react"></script>
+
+  <!-- ② Charts with no AppComponents dependency -->
+  <script src="./js/chart-bar.js"           type="text/babel" data-presets="react"></script>
+  <script src="./js/chart-bubble.js"        type="text/babel" data-presets="react"></script>
+  <script src="./js/chart-donut.js"         type="text/babel" data-presets="react"></script>
+
+  <!-- ③ Shared presentational components — must load before any chart
+          that uses PaperListBlock or PaperDetail (stacked-area, streamgraph, sankey) -->
+  <script src="./js/paper-components.js"    type="text/babel" data-presets="react"></script>
+
+  <!-- ④ Charts that depend on AppComponents (PaperListBlock / PaperDetail) -->
+  <script src="./js/chart-panel.js"         type="text/babel" data-presets="react"></script>
+  <script src="./js/chart-bubble-phase.js"  type="text/babel" data-presets="react"></script>
+  <script src="./js/chart-stacked-area.js"  type="text/babel" data-presets="react"></script>
+  <script src="./js/chart-streamgraph.js"   type="text/babel" data-presets="react"></script>
+  <script src="./js/chart-sankey.js"        type="text/babel" data-presets="react"></script>
+
+  <!-- ⑤ AI assistant (depends on AppComponents for PaperDetail link-through) -->
+  <script src="./js/ai-chat.js"             type="text/babel" data-presets="react"></script>
+
+  <!-- ⑥ Full-page views (depend on AppCharts + AppComponents) -->
+  <script src="./js/view-dashboard.js"      type="text/babel" data-presets="react"></script>
+  <script src="./js/views.js"               type="text/babel" data-presets="react"></script>
+
+  <!-- ⑦ App root — mounts React, loads CSV, routes tabs -->
+  <script src="./js/app.js"                 type="text/babel" data-presets="react"></script>
+</body>
+</html>
