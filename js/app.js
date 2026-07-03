@@ -17,7 +17,7 @@
   // ── Gemini AI configuration ───────────────────────────
   // Production: deploy worker.js to Cloudflare Workers, paste the URL below.
   // Local dev only: paste a Gemini API key (never commit a real key to git).
-  const GEMINI_WORKER_BASE = '';   // e.g. 'https://my-worker.example.workers.dev'
+  const GEMINI_WORKER_BASE = 'https://electriai-proxy.chauducanh.workers.dev';   // e.g. 'https://my-worker.example.workers.dev'
   const GEMINI_API_KEY     = '';   // local dev fallback only
 
   // ── Top-level tabs ────────────────────────────────────
