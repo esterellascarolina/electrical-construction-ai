@@ -17,7 +17,7 @@
   // ── Gemini AI configuration ───────────────────────────
   // Production: deploy worker.js to Cloudflare Workers, paste the URL below.
   // Local dev only: paste a Gemini API key (never commit a real key to git).
-  const GEMINI_WORKER_BASE = 'https://electriai-proxy.chauducanh.workers.dev';   // e.g. 'https://my-worker.example.workers.dev'
+  const GEMINI_WORKER_BASE = 'https://electriai-proxy.chauducanh.workers.dev';
   const GEMINI_API_KEY     = '';   // local dev fallback only
 
   // ── Top-level tabs ────────────────────────────────────
@@ -138,7 +138,31 @@
 
         <footer className="border-t border-slate-200 bg-white mt-16">
           <div className="max-w-6xl mx-auto px-6 py-6 text-center text-xs text-slate-500 leading-relaxed">
-            Companion database to a manuscript currently under review. Full reference will follow on publication.
+            <p>
+              Companion database to Esterellas Hernandez, C., &amp; Chau, A. D. (2026). Artificial intelligence
+              and digital technologies in electrical construction: A systematic review of applications, maturity,
+              and research directions.{' '}
+              <span className="italic">International Journal of Construction Management</span>.{' '}
+              <a
+                href="https://doi.org/10.1080/15623599.2026.2740760"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-700 underline decoration-slate-300 underline-offset-2 hover:decoration-slate-700"
+              >
+                doi:10.1080/15623599.2026.2740760
+              </a>
+            </p>
+            <p className="mt-1">
+              <a
+                href="./preprint.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-slate-300 underline-offset-2 hover:decoration-slate-700"
+              >
+                Preprint (PDF)
+              </a>
+              {' · '}Florida Gulf Coast University{' · '}Supported by ELECTRI International
+            </p>
           </div>
         </footer>
       </div>
