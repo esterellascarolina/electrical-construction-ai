@@ -368,7 +368,6 @@ window.AppViews = window.AppViews || {};
   const ABOUT_DOI          = '10.1080/15623599.2026.2740760';
   const ABOUT_DOI_URL      = `https://doi.org/${ABOUT_DOI}`;
   const ABOUT_TF_URL       = `https://www.tandfonline.com/doi/full/${ABOUT_DOI}`;
-  const ABOUT_TF_PDF       = `https://www.tandfonline.com/doi/pdf/${ABOUT_DOI}`;
   const ABOUT_PREPRINT_URL = './preprint.pdf';   // preprint.pdf sits next to index.html
   const ABOUT_TITLE =
     'Artificial Intelligence and Digital Technologies in Electrical Construction: A Systematic Review of Applications, Maturity, and Research Directions';
@@ -561,7 +560,6 @@ window.AppViews = window.AppViews || {};
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
                 <a href={ABOUT_TF_URL} target="_blank" rel="noopener noreferrer" className={btnPrimary}>Read on Taylor &amp; Francis ↗</a>
-                <a href={ABOUT_TF_PDF} target="_blank" rel="noopener noreferrer" className={btnSecondary}>PDF ↗</a>
               </div>
             </div>
             <div className="border border-slate-200 rounded-lg p-5 flex flex-col">
